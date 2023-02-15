@@ -1,10 +1,11 @@
 package com.poject.libraryManagement1.Service;
 
+import com.poject.libraryManagement1.Exception.ApiRequestException;
 import com.poject.libraryManagement1.Repository.UserRepository;
-import com.poject.libraryManagement1.model.AppUser;
-import com.poject.libraryManagement1.model.UserDetails;
-import com.poject.libraryManagement1.model.ResponseMessage;
-import com.poject.libraryManagement1.model.User;
+import com.poject.libraryManagement1.Service.model.AppUser;
+import com.poject.libraryManagement1.Service.model.UserDetails;
+import com.poject.libraryManagement1.Service.model.ResponseMessage;
+import com.poject.libraryManagement1.Service.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +18,20 @@ public class UserService {
     private UserRepository repository;
 
     @Autowired
+    private BookService bs;
+
+    @Autowired
     private ResponseMessage message;
     public User register(User user){
         if(user.getAppUser() == AppUser.ADMIN){
             User adminExist = repository.findByAppUser(user.getAppUser());
             if(adminExist != null) {
-                throw new IllegalStateException("admin already exists");
+                throw new ApiRequestException("admin already exists");
             }
         }
         User exists = repository.findByEmail(user.getEmail());
         if(exists != null){
-            throw new IllegalStateException("email already taken");
+            throw new ApiRequestException("email already taken");
         }
         return repository.save(user);
     }
@@ -72,16 +76,29 @@ public class UserService {
 
 
 
-    public List<User> getUsers(String key, String email){
+    public List<User> getUsers(String key){
         User user = repository.findById(key).get() ;
         if(user!=null &&user.getAppUser() == AppUser.ADMIN && user.isLoggedIn()) {
             return repository.findAll();
         }
-        User user1 = repository.findByEmail(email);
-        if(user1!=null && user1.getAppUser() == AppUser.ADMIN && user1.isLoggedIn()) {
-            return repository.findAll();
+
+        throw new ApiRequestException("no user found");
+    }
+
+    public String deleteUser(String id, String key){
+        boolean isAdmin = bs.isAdmin(key);
+        if(!isAdmin){
+            throw new ApiRequestException("only admin can delete users");
         }
-        return null;
+
+        User user = repository.findById(id).get();
+        if(user==null) {
+            throw new ApiRequestException("no user found with the giver id:" + id);
+        }
+
+        repository.deleteById(id);
+
+        return "user deleted successfully";
     }
 
 }

@@ -1,4 +1,4 @@
-package com.poject.libraryManagement1.model;
+package com.poject.libraryManagement1.Service.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

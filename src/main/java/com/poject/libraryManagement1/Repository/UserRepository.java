@@ -1,7 +1,7 @@
 package com.poject.libraryManagement1.Repository;
 
-import com.poject.libraryManagement1.model.AppUser;
-import com.poject.libraryManagement1.model.User;
+import com.poject.libraryManagement1.Service.model.AppUser;
+import com.poject.libraryManagement1.Service.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
