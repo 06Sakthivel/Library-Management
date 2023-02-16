@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Harry Potter",
+    "author": "J. K. Rowling",
+    "genre": "Fiction",
+    "price": "$30"
+  },
+  {
+    "name": "A Game of Thrones",
+    "author": "George R. R. Martin",
+    "genre": "Action",
+    "price": "$26.5"
+  },
+  {
+    "name": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "genre": "Mystery",
+    "price": "$20"
+  },
+  {
+    "name": "It",
+    "author": "Stephen King",
+    "genre": "Horror",
+    "price": "$40"
+  },
+
+  {
+    "name": "It Ends with us",
+    "author": "Collen Hoover",
+    "genre": "Romance",
+    "price": "$45"
+  },
+  {
+    "name": "It Starts with us",
+    "author": "Collen Hoover",
+    "genre": "Romance",
+    "price": "$55"
+  },
+  {
+    "name": "Educated",
+    "author": "Tara Westover",
+    "genre": "Education",
+    "price": "$44"
+  }
+]

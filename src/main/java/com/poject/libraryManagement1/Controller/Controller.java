@@ -1,13 +1,13 @@
 package com.poject.libraryManagement1.Controller;
 
-import com.poject.libraryManagement1.Repository.UserRepository;
 import com.poject.libraryManagement1.Service.BookService;
 import com.poject.libraryManagement1.Service.UserService;
-import com.poject.libraryManagement1.Service.model.Book;
-import com.poject.libraryManagement1.Service.model.UserDetails;
-import com.poject.libraryManagement1.Service.model.ResponseMessage;
-import com.poject.libraryManagement1.Service.model.User;
+import com.poject.libraryManagement1.model.Book;
+import com.poject.libraryManagement1.model.UserDetails;
+import com.poject.libraryManagement1.model.ResponseMessage;
+import com.poject.libraryManagement1.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,10 +20,9 @@ public class Controller {
     private BookService bookService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public User register(@RequestBody User user){
        return userService.register(user);
     }
@@ -39,6 +38,7 @@ public class Controller {
     }
 
     @PostMapping("/addbook")
+    @ResponseStatus(HttpStatus.CREATED)
     public Book addBook(@RequestBody Book book,@RequestHeader("authenticationKey") String key){
         return bookService.addBook(book, key);
     }
@@ -50,6 +50,7 @@ public class Controller {
 
     @GetMapping("/books")
     public List<Book> getBooks(@RequestHeader("authenticationKey") String key){
+
         return bookService.getAllBooks(key);
     }
 
@@ -60,10 +61,10 @@ public class Controller {
         return bookService.getBookById(id, key);
     }
 
-//    @GetMapping("/book/{name}")
-//    public List<Book> getBookByName(@PathVariable("name") String name, @RequestHeader("authenticationKey") String key){
-//        return bookService.getBookByName(name);
-//    }
+    @GetMapping("/book")
+    public List<Book> getBookByName(@RequestParam("name") String name){
+        return bookService.getBookByName(name);
+    }
 
     @PutMapping("/updatebook")
     public Book updateBook(@RequestBody Book book,

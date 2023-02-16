@@ -1,4 +1,4 @@
-package com.poject.libraryManagement1.Service.model;
+package com.poject.libraryManagement1.model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
 package com.poject.libraryManagement1.Repository;
 
-import com.poject.libraryManagement1.Service.model.Book;
+import com.poject.libraryManagement1.model.Book;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
