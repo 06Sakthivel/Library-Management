@@ -1,15 +1,11 @@
-package com.poject.libraryManagement1.Service.model;
+package com.poject.libraryManagement1.model;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Data
 public class User {
     @Id
     private String id;
@@ -19,4 +15,5 @@ public class User {
     private String password;
     private boolean isLoggedIn;
     private AppUser appUser;
+
 }
