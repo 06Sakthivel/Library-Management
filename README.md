@@ -94,7 +94,7 @@ Users only have access to view the books in the library
 | `name`      | `String` |Book Name is **Required** to fetch the book from the library |
 
 ```http
-  GET /api/v1/library/books/updatebook
+  GET /api/v1/library/updatebook
 ```
 
 | Body | Type     | Description                       |
@@ -102,8 +102,7 @@ Users only have access to view the books in the library
 | `book`      | `Book` |updates the book that matches the primary key (ID) |
 
 ```http
-  GET /api/v1/book/library/remove/{id}
-  GET /api/v1/book/remove/{id}
+  GET /api/v1/book/library/book/remove/{id}
 ```
 
 | Pathvariable | Type     | Description                       |
