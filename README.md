@@ -93,6 +93,8 @@ Users only have access to view the books in the library
 | :-------- | :------- | :-------------------------------- |
 | `name`      | `String` |Book Name is **Required** to fetch the book from the library |
 
+#### Update Book
+
 ```http
   GET /api/v1/library/updatebook
 ```
@@ -101,6 +103,8 @@ Users only have access to view the books in the library
 | :-------- | :------- | :-------------------------------- |
 | `book`      | `Book` |updates the book that matches the primary key (ID) |
 
+#### Remove Book
+
 ```http
   GET /api/v1/book/library/book/remove/{id}
 ```
@@ -108,6 +112,8 @@ Users only have access to view the books in the library
 | Pathvariable | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `Book` |Book ID is Required to remove the book from the library |
+
+#### Delete User
 
 ```http
   GET /api/v1/library/book/user/delete
