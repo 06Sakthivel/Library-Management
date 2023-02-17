@@ -15,6 +15,10 @@ To deploy this project
   base url : http://localhost:8080/api/v1/library
 ```
 
+## Architecture
+
+![Architecture](https://user-images.githubusercontent.com/91428348/219564867-7fb7038f-7e12-441c-8b77-55b6f3f13598.jpg)
+
 
 ## API Reference
 
