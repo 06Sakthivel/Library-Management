@@ -19,10 +19,18 @@ public class Book {
 
     public void updateBook(Book other) {
         this.id = other.id;
-        this.name = other.name;
-        this.author = other.author;
-        this.genre = other.genre;
-        this.price = other.price;
+        if(other.name != null && !"".equals(other.name)){
+             this.name = other.name;
+        }
+        if(other.author != null && !"".equals(other.author)){
+            this.author = other.author;
+        }
+        if(other.genre != null && !"".equals(other.genre)){
+            this.genre = other.genre;
+        }
+        if(other.price != null && !"".equals(other.price)){
+            this.price = other.price;
+        }
     }
 
 }

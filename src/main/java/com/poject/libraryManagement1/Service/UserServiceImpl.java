@@ -7,8 +7,10 @@ import com.poject.libraryManagement1.model.UserDetails;
 import com.poject.libraryManagement1.model.ResponseMessage;
 import com.poject.libraryManagement1.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -94,17 +96,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getUsers(String key){
-
+        List<User> allUsers = new ArrayList<>();
         try{
             User user = repository.findById(key).get();
+            if(user.getAppUser() != AppUser.ADMIN) throw new ApiRequestException("only admin can access user details");
             if(user.getAppUser() == AppUser.ADMIN && user.isLoggedIn()) {
-                return repository.findAll();
+                allUsers = repository.findAll();
             }
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            throw new ApiRequestException("Admin not found with the key " + key);
         }
-        throw new ApiRequestException( "no users found");
-
+        return allUsers;
     }
 
     @Override
@@ -113,13 +115,11 @@ public class UserServiceImpl implements UserService {
         if(!isAdmin){
             throw new ApiRequestException("only admin can delete users");
         }
-
         try{
              repository.findById(id).get();
         } catch (Exception e){
-            throw new ApiRequestException(e.getMessage() + "no user found with the given id:" + id);
+            throw new ApiRequestException("no user found with the given id:" + id);
         }
-
         repository.deleteById(id);
 
         return "user deleted successfully";
