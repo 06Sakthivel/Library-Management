@@ -103,8 +103,11 @@ public class UserServiceImpl implements UserService {
             if(user.getAppUser() == AppUser.ADMIN && user.isLoggedIn()) {
                 allUsers = repository.findAll();
             }
+            if(!user.isLoggedIn()){
+                throw new ApiRequestException("log in as admin to access user details");
+            }
         } catch (Exception e){
-            throw new ApiRequestException("Admin not found with the key " + key);
+            throw new ApiRequestException("Admin not found with the key " + key + " or " + e.getMessage());
         }
         return allUsers;
     }
